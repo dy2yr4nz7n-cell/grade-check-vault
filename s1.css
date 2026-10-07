@@ -1,0 +1,76 @@
+/* Layout: Handy-App mit drei Bereichen – Sammlung · Scannen (Start, mittlerer Knopf) · Mehr.
+   Ergebnisse und Karten-Details öffnen sich als Blatt von unten. Gold auf Tresor-Dunkel. */
+:root{
+  --vault:#15171C; --vault2:#1C1F26; --card:#21252E; --card2:#282D37; --line:#2C313C;
+  --gold:#E6B450; --gold-dim:#9A7B33; --gold-soft:rgba(230,180,80,.13);
+  --ink:#EDEFF3; --muted:#9AA3B2; --green:#4FB477; --red:#E0556B; --blue:#5B8DEF;
+  --r:16px; --r-sm:11px;
+  --fs-xs:.75rem; --fs-sm:.875rem; --fs-md:1rem; --fs-lg:1.2rem; --fs-xl:1.85rem;
+  --nav-h:68px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--vault);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;font-size:16px;line-height:1.45}
+body{padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 20px)}
+[hidden]{display:none!important}
+button,input,select{font:inherit;color:inherit}
+img{max-width:100%}
+a{color:var(--gold)}
+h2{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 10px;font-weight:700}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- Kopf ---------- */
+.top{position:sticky;top:0;z-index:20;background:rgba(21,23,28,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top-in{max-width:620px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;text-align:left;min-width:0}
+.brand svg{width:30px;height:30px;flex:none}
+.brand b{font-size:1.02rem;letter-spacing:.01em;white-space:nowrap}
+.brand b span{color:var(--gold)}
+.chip-user{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 5px;cursor:pointer;min-height:40px;max-width:46%}
+.chip-user .av{width:30px;height:30px;border-radius:50%;background:var(--gold);color:#1a1206;display:grid;place-items:center;font-weight:800;font-size:.85rem;overflow:hidden;flex:none}
+.chip-user .av img{width:100%;height:100%;object-fit:cover}
+.chip-user span:last-child{font-size:var(--fs-sm);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+main{max-width:620px;margin:0 auto;padding-inline:16px;padding-block:16px 0}
+.view{display:flex;flex-direction:column;gap:22px}
+
+/* ---------- Bausteine ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:var(--r-sm);
+  border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:650;cursor:pointer;text-decoration:none;text-align:center}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.gold{background:var(--gold);color:#1a1206;border-color:var(--gold);box-shadow:0 6px 20px rgba(230,180,80,.22)}
+.btn.line{background:transparent;border-color:var(--gold-dim);color:var(--gold)}
+.btn.danger{background:transparent;border-color:rgba(224,85,107,.5);color:var(--red)}
+.btn.sm{min-height:40px;padding:0 12px;font-size:var(--fs-sm)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.w100{width:100%}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.muted{color:var(--muted)} .pos{color:var(--green)} .neg{color:var(--red)}
+.small{font-size:var(--fs-xs)}
+.status{font-size:var(--fs-sm);color:var(--muted);min-height:1.2em}
+.status.err{color:var(--red)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1 1 140px;min-width:0}
+label{display:block;font-size:var(--fs-xs);font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}
+input,select{width:100%;min-height:46px;background:var(--vault2);border:1px solid var(--line);border-radius:var(--r-sm);padding:0 12px;font-size:16px;color:var(--ink)}
+input:focus,select:focus{outline:2px solid var(--gold-dim);border-color:var(--gold-dim)}
+.field{min-width:0}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fields .full{grid-column:1/-1}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:0 14px;min-height:38px;font-size:var(--fs-sm);font-weight:650;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--gold-soft);border-color:var(--gold-dim);color:var(--gold)}
+.chip small{font-weight:500;margin-left:4px;opacity:.8}
+.badge{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:5px;vertical-align:middle}
+.badge.pkmn{background:rgba(230,180,80,.18);color:var(--gold)}
+.badge.ygo{background:rgba(91,141,239,.2);color:var(--blue)}
+.badge.mtg{background:rgba(224,85,107,.18);color:var(--red)}
+.badge.other{background:rgba(79,180,119,.18);color:var(--green)}
+.empty{text-align:center;color:var(--muted);padding:28px 16px;border:1px dashed var(--line);border-radius:var(--r);font-size:var(--fs-sm)}
+.empty .btn{margin-top:14px}
+
