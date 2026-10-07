@@ -9,7 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Grade-Check">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>Grade-Check Vault</title>
 <link rel="stylesheet" href="app1.css">
 </head>
@@ -264,7 +265,6 @@
   <div id="auth-logged-in" style="display:none;flex-direction:column;gap:10px">
     <p style="margin:6px 0">Angemeldet als <b id="auth-who" style="color:var(--gold)"></b></p>
     <button class="btn line" onclick="logout()">Abmelden</button>
-    <button class="btn" onclick="closeAuth()">Schließen</button>
   </div>
   <p class="note" style="margin:14px 0 0">E-Mail-Konten werden nur auf diesem Gerät gespeichert (keine Wiederherstellung). Für Sicherung und andere Geräte: „Mehr“ → Sicherung oder Sync &amp; Cloud.</p>
   <button class="btn w100" style="margin-top:12px" onclick="closeAuth()">Schließen</button>
